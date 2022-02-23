@@ -1,6 +1,7 @@
 package com.mydiary.diary.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -18,6 +19,8 @@ public class Posts {
     @Column(name = "created_date")
     private Date createdDate; // DateTime으로 type을 지정하면 에러나요.
 
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_date")
     private Date updatedDate;
 
@@ -26,13 +29,13 @@ public class Posts {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_USERS_TB"))
-    private Long userId;
+    private Users users;
 
-    public Posts setPosts(Date createdDate, Date updatedDate, Date deletedDate, Long userId) {
+    public Posts setPosts(Date createdDate, Date updatedDate, Date deletedDate, Users users) {
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.deletedDate = deletedDate;
-        this.userId = userId;
+        this.users = users;
         return this;
     }
 }
