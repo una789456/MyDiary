@@ -1,10 +1,9 @@
 package com.mydiary.diary.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.ZonedDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
+import java.util.Date;
 
 public class Users {
 
@@ -19,13 +18,15 @@ public class Users {
     @Column(length = 20, nullable = false)
     private String password;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_date", nullable = false)
-    private ZonedDateTime createdDate;
+    private Date createdDate;
 
     @Column(name = "deleted_date")
-    private ZonedDateTime deletedDate;
+    private Date deletedDate;
 
-    public Users setUsers(Long id, String name, String password, ZonedDateTime createdDate, ZonedDateTime deletedDate) {
+    public Users setUsers(Long id, String name, String password, Date createdDate, Date deletedDate) {
         this.name = name;
         this.password = password;
         this.createdDate = createdDate;
