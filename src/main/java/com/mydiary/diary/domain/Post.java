@@ -1,13 +1,22 @@
 package com.mydiary.diary.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
-public class Posts {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
+@Entity
+@Table(name = "posts")
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,13 +38,13 @@ public class Posts {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_USERS_TB"))
-    private Users users;
+    private User user;
 
-    public Posts setPosts(Date createdDate, Date updatedDate, Date deletedDate, Users users) {
+    public Post setPosts(Date createdDate, Date updatedDate, Date deletedDate, User user) {
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.deletedDate = deletedDate;
-        this.users = users;
+        this.user = user;
         return this;
     }
 }

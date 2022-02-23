@@ -1,8 +1,8 @@
 package com.mydiary.diary.repository;
 
-import com.mydiary.diary.domain.Users;
+import com.mydiary.diary.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsersRepository extends JpaRepository<Users, Long> {
+public interface UsersRepository extends JpaRepository<User, Long> {
 
 }
